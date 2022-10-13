@@ -1,6 +1,6 @@
-import { TFieldsData } from '../../../types/form';
-import { TAuth } from '../../../types/form/auth';
-import { validEmailField, validPasswordField } from './check';
+import { TFieldsData } from '../../types/form';
+import { TAuth } from '../../types/form/auth';
+import { validEmailField, validPasswordField } from '../check';
 
 export const AUTH_FIELDS: TFieldsData<TAuth> = {
   email: {
