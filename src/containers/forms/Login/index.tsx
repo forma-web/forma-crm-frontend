@@ -1,17 +1,17 @@
 import { Button, Checkbox, FormControlLabel, TextField } from '@mui/material';
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { AUTH_FIELDS } from '../../constants/fields/auth';
-import { useFieldProps } from '../../hooks/useFieldProps';
-import { TAuth } from '../../types/form/auth';
+import { AUTH_FIELDS } from '../../../constants/fields/auth';
+import { useFieldProps } from '../../../hooks/useFieldProps';
+import { TAuth } from '../../../types/form/auth';
 import { AuthBlock, AuthFields, AuthForm } from './styled';
 
 interface TAuthProps {
   onSubmit: (data: TAuth) => void;
 }
 
-const Auth: FC<TAuthProps> = ({ onSubmit }) => {
+const Login: FC<TAuthProps> = ({ onSubmit }) => {
   const {
     register,
     handleSubmit,
@@ -22,7 +22,6 @@ const Auth: FC<TAuthProps> = ({ onSubmit }) => {
 
   return (
     <AuthBlock>
-      {/* <AuthLogo /> */}
       <AuthForm onSubmit={handleSubmit(onSubmit)}>
         <AuthFields>
           <TextField {...getFieldProps('email')} />
@@ -40,4 +39,4 @@ const Auth: FC<TAuthProps> = ({ onSubmit }) => {
   );
 };
 
-export default Auth;
+export default memo(Login);

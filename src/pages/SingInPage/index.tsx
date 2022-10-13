@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useGetJwtTokenMutation } from '../../api/auth';
 import { ERoutes } from '../../config';
-import Auth from '../../containers/Auth';
+import Login from '../../containers/forms/Login';
 import { TAuth } from '../../types/form/auth';
 
-const AuthPage = () => {
+const SingInPage = () => {
   const [getJwtToken, result] = useGetJwtTokenMutation();
 
   const onSubmit = (data: TAuth) => {
@@ -16,13 +16,12 @@ const AuthPage = () => {
 
   useEffect(() => {
     if (result.data) {
-      console.log(result);
       // localStorage.setItem('jwt', result.data);
       // navigate(ERoutes.home);
     }
   }, [result.data]);
 
-  return <Auth onSubmit={onSubmit} />;
+  return <Login onSubmit={onSubmit} />;
 };
 
-export default AuthPage;
+export default memo(SingInPage);
