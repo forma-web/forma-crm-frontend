@@ -1,16 +1,13 @@
 import { styled } from '@mui/material';
 
-export const PromoStyled = styled('header')`
+import { INDENTS } from '../../styles/size';
+
+export const PromoStyled = styled('div')`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 60px;
+  gap: ${INDENTS.gapBlocksVertical};
 
-  width: 800px;
   margin: auto;
-
-  text-align: center;
-  font-size: 48px;
-  line-height: 1.32;
 `;

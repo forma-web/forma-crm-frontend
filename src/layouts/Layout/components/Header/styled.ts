@@ -1,5 +1,7 @@
 import { styled } from '@mui/material';
 
+import { INDENTS, SIZES } from '../../../../styles/size';
+
 export const HeaderStyled = styled('header')`
   display: flex;
   align-items: center;
@@ -7,7 +9,8 @@ export const HeaderStyled = styled('header')`
   box-sizing: border-box;
 
   width: 100%;
-  padding: 20px 32px;
+  min-height: ${SIZES.minHeightHeader};
+  padding: ${INDENTS.paddingHeader};
 
   position: fixed;
   top: 0;
@@ -18,7 +21,7 @@ export const HeaderBlock = styled('div')`
   display: flex;
   align-items: center;
 
-  gap: 12px;
+  gap: ${INDENTS.paddingControlHorizontal};
 `;
 
 export const HeaderLogo = styled('div')`

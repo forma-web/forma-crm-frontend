@@ -1,11 +1,12 @@
-import { Button, Checkbox, FormControlLabel, TextField } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import React, { FC, memo } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { AUTH_FIELDS } from '../../../constants/fields/auth';
 import { useFieldProps } from '../../../hooks/useFieldProps';
+import { FieldsSetStyled, FormStyled } from '../../../styles/form';
 import { TAuth } from '../../../types/form/auth';
-import { AuthBlock, AuthFields, AuthForm } from './styled';
+import { AuthBlock } from './styled';
 
 interface TAuthProps {
   onSubmit: (data: TAuth) => void;
@@ -22,19 +23,19 @@ const Login: FC<TAuthProps> = ({ onSubmit }) => {
 
   return (
     <AuthBlock>
-      <AuthForm onSubmit={handleSubmit(onSubmit)}>
-        <AuthFields>
+      <FormStyled onSubmit={handleSubmit(onSubmit)}>
+        <FieldsSetStyled>
           <TextField {...getFieldProps('email')} />
           <TextField type="password" {...getFieldProps('password')} />
           {/* <FormControlLabel
             control={<Checkbox {...getFieldProps('remember')} />}
             label={AUTH_FIELDS.remember.label}
           /> */}
-        </AuthFields>
+        </FieldsSetStyled>
         <Button type="submit" variant="outlined" disabled={!isValid}>
           Войти
         </Button>
-      </AuthForm>
+      </FormStyled>
     </AuthBlock>
   );
 };

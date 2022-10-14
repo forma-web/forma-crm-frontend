@@ -1,11 +1,13 @@
 import { Menu, MenuItem, styled } from '@mui/material';
 
+import { INDENTS } from '../../../../styles/size';
+
 export const MenuStyled = styled(Menu)`
-  top: 8px;
+  top: ${INDENTS.marginMenu};
 `;
 
 export const MenuItemStyled = styled(MenuItem)`
   display: flex;
-  gap: 12px;
+  gap: ${INDENTS.paddingControlHorizontal};
   align-items: center;
 `;

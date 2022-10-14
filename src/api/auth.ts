@@ -15,7 +15,13 @@ export const authApi = createApi({
         body,
       }),
     }),
+    logout: builder.mutation({
+      query: () => ({
+        url: EEndpoints.logout,
+        method: 'POST',
+      }),
+    }),
   }),
 });
 
-export const { useGetJwtTokenMutation } = authApi;
+export const { useGetJwtTokenMutation, useLogoutMutation } = authApi;
