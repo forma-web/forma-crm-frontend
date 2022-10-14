@@ -1,5 +1,5 @@
 export const enum ERoutes {
-  singIn = '/singin',
-  singUp = '/singup',
   home = '/',
+  auth = '/auth',
+  createCompany = '/create',
 }

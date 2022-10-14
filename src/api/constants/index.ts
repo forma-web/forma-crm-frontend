@@ -16,4 +16,5 @@ export const defaultFetchOptions: Partial<BaseQueryProps> = {
 
 export enum EEndpoints {
   login = 'auth/login',
+  logout = 'auth/logout',
 }

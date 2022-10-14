@@ -3,13 +3,17 @@ import React, { FC, memo, PropsWithChildren } from 'react';
 import Header from './components/Header';
 import { ContextStyled, LayoutStyled } from './styled';
 
-const AppLayout: FC<PropsWithChildren> = ({ children }) => {
+type TLayoutProps = {
+  isAuth?: boolean;
+} & PropsWithChildren;
+
+const Layout: FC<TLayoutProps> = ({ children, isAuth }) => {
   return (
     <LayoutStyled>
-      <Header />
+      <Header isAuth={isAuth} />
       <ContextStyled>{children}</ContextStyled>
     </LayoutStyled>
   );
 };
 
-export default memo(AppLayout);
+export default memo(Layout);

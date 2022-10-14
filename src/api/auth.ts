@@ -7,7 +7,8 @@ export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({ ...defaultFetchOptions }),
   endpoints: (builder) => ({
-    getJwtToken: builder.mutation<unknown, Omit<TAuth, 'remember'>>({
+    getJwtToken: builder.mutation<any, Omit<TAuth, 'remember'>>({
+      // TODO: remove any
       query: (body) => ({
         url: EEndpoints.login,
         method: 'POST',
