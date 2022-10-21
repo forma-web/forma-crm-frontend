@@ -8,7 +8,7 @@ import Login from '../../containers/forms/Login';
 import Layout from '../../layouts/Layout';
 import { TitleContainer } from '../../styles/containers';
 import { TitleH1 } from '../../styles/typography';
-import { TAuth } from '../../types/form/auth';
+import { TLogin } from '../../types/form/auth';
 import { AuthBlock, AuthTitleDescription } from './styled';
 
 const AuthPage = () => {
@@ -17,7 +17,7 @@ const AuthPage = () => {
   const [getJwtToken, result] = useGetJwtTokenMutation();
   const navigate = useNavigate();
 
-  const onSubmit = (data: TAuth) => {
+  const onSubmit = (data: TLogin) => {
     const { remember, ...body } = data;
     getJwtToken(body);
   };

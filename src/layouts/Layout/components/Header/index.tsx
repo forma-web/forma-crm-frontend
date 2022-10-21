@@ -1,4 +1,4 @@
-import { Avatar, Button } from '@mui/material';
+import { Button } from '@mui/material';
 import React, { FC, memo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -18,7 +18,7 @@ const Header: FC<THeaderProps> = ({ isAuth = false }) => {
     navigate(ERoutes.home);
   }, []);
 
-  const redirectAuth = useCallback(() => {
+  const redirecTLogin = useCallback(() => {
     navigate(ERoutes.auth);
   }, []);
 
@@ -27,7 +27,7 @@ const Header: FC<THeaderProps> = ({ isAuth = false }) => {
       <HeaderLogo onClick={redirectHome} />
       {!isAuth && (
         <HeaderBlock>
-          {isAuthorized() ? <HeaderUser /> : <Button onClick={redirectAuth}>Войти</Button>}
+          {isAuthorized() ? <HeaderUser /> : <Button onClick={redirecTLogin}>Войти</Button>}
         </HeaderBlock>
       )}
     </HeaderStyled>
