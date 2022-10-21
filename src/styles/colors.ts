@@ -1,3 +1,4 @@
 export const COLORS = {
-  background: '#FFFFFF',
+  backgroundBlock: '#FFFFFF',
+  borderColor: '#e8e8e8',
 };

@@ -1,6 +1,6 @@
 import { styled } from '@mui/material';
 
-import { INDENTS } from '../../styles/size';
+import { INDENTS } from '../../../styles/size';
 
 export const PromoStyled = styled('div')`
   display: flex;

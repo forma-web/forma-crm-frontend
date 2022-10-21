@@ -1,6 +1,6 @@
 export const SIZES = {
-  widthContent: '1120px',
-  widthForm: '420px',
+  widthContent: '980px',
+  widthForm: '462px',
   minHeightHeader: '80px',
 };
 
@@ -10,6 +10,7 @@ export const INDENTS = {
   paddingText: '4px',
   paddingPopupBase: '20px',
   paddingHeader: '20px 32px',
+  paddingContent: '100px 0',
 
   marginFormFieldHorizontal: '16px',
   marginFormFieldVertical: '20px',
@@ -18,4 +19,6 @@ export const INDENTS = {
   gapTitleVertical: '12px',
   marginMenu: '2px',
   marginPopup: '24px',
+
+  borderRadius: '6px',
 };

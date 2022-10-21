@@ -1,27 +1,14 @@
-import { Button } from '@mui/material';
-import React, { memo, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { memo } from 'react';
 
-import { ERoutes } from '../../config';
+import CompaniesList from '../../containers/home/CompaniesList';
+import Promo from '../../containers/home/Promo';
 import Layout from '../../layouts/Layout';
-import { TitleH0 } from '../../styles/typography';
-import { PromoStyled } from './styled';
 
 const HomePage = () => {
-  const navigate = useNavigate();
-
-  const handleClick = useCallback(() => {
-    navigate(ERoutes.createCompany);
-  }, [navigate]);
-
   return (
     <Layout>
-      <PromoStyled>
-        <TitleH0>Быстрый старт в управлении бизнесом</TitleH0>
-        <Button variant="outlined" onClick={handleClick}>
-          Создать компанию
-        </Button>
-      </PromoStyled>
+      {/* <Promo /> */}
+      <CompaniesList />
     </Layout>
   );
 };

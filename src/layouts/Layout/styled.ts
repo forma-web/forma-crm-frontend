@@ -1,6 +1,6 @@
 import { styled } from '@mui/material';
 
-import { SIZES } from '../../styles/size';
+import { INDENTS, SIZES } from '../../styles/size';
 
 export const LayoutStyled = styled('div')`
   width: 100%;
@@ -18,4 +18,6 @@ export const ContextStyled = styled('div')`
   width: ${SIZES.widthContent};
   min-height: 100%;
   margin: 0 auto;
+  padding: ${INDENTS.paddingContent};
+  box-sizing: border-box;
 `;
