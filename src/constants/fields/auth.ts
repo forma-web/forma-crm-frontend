@@ -1,8 +1,8 @@
 import { TFieldsData } from '../../types/form';
-import { TAuth } from '../../types/form/auth';
-import { validEmailField, validPasswordField } from '../check';
+import { TLogin, TSingUp } from '../../types/form/auth';
+import { validEmailField, validPasswordField, validRequired } from '../check';
 
-export const AUTH_FIELDS: TFieldsData<TAuth> = {
+export const LOGIN_FIELDS: TFieldsData<TLogin> = {
   email: {
     label: 'Email',
     defaultCheck: validEmailField,
@@ -13,5 +13,24 @@ export const AUTH_FIELDS: TFieldsData<TAuth> = {
   },
   remember: {
     label: 'Запомнить меня',
+  },
+};
+
+export const SINGUP_FIELDS: TFieldsData<TSingUp> = {
+  first_name: {
+    label: 'Имя',
+    defaultCheck: validRequired,
+  },
+  last_name: {
+    label: 'Фамилия',
+    defaultCheck: validRequired,
+  },
+  email: {
+    label: 'Email',
+    defaultCheck: validEmailField,
+  },
+  password: {
+    label: 'Пароль',
+    defaultCheck: validPasswordField,
   },
 };

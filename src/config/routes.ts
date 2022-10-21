@@ -1,4 +1,5 @@
 export const enum ERoutes {
+  home = '/',
   auth = '/auth',
-  home = '',
+  createCompany = '/create',
 }

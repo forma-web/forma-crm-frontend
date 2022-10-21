@@ -1,28 +1,59 @@
-import React, { useEffect } from 'react';
+import { Link } from '@mui/material';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useGetJwtTokenMutation } from '../../api/auth';
 import { ERoutes } from '../../config';
-import Auth from '../../containers/Auth';
-import { TAuth } from '../../types/form/auth';
+import Login from '../../containers/forms/Login';
+import Layout from '../../layouts/Layout';
+import { TitleContainer } from '../../styles/containers';
+import { TitleH1 } from '../../styles/typography';
+import { TLogin } from '../../types/form/auth';
+import { AuthBlock, AuthTitleDescription } from './styled';
 
 const AuthPage = () => {
-  const [getJwtToken, result] = useGetJwtTokenMutation();
+  const [isLogin, setIsLogin] = useState<boolean>(true);
 
-  const onSubmit = (data: TAuth) => {
+  const [getJwtToken, result] = useGetJwtTokenMutation();
+  const navigate = useNavigate();
+
+  const onSubmit = (data: TLogin) => {
     const { remember, ...body } = data;
     getJwtToken(body);
   };
 
   useEffect(() => {
     if (result.data) {
-      console.log(result);
-      // localStorage.setItem('jwt', result.data);
-      // navigate(ERoutes.home);
+      const jwtToken = result.data.meta?.access_token;
+      // TODO: Added error
+      if (jwtToken === undefined) return;
+
+      localStorage.setItem('jwt', jwtToken);
+      navigate(-1);
     }
   }, [result.data]);
 
-  return <Auth onSubmit={onSubmit} />;
+  return (
+    <Layout isAuth>
+      <AuthBlock>
+        <TitleContainer>
+          <TitleH1>{isLogin ? 'Вход' : 'Регистрация'}</TitleH1>
+          <AuthTitleDescription>
+            {isLogin ? 'Новый пользователь?' : 'У вас уже есть учетная запись?'}
+            <Link
+              component="button"
+              underline="hover"
+              href="!#"
+              onClick={() => setIsLogin(!isLogin)}
+            >
+              {isLogin ? 'Создайте учётную запись' : 'Войти'}
+            </Link>
+          </AuthTitleDescription>
+        </TitleContainer>
+        {isLogin && <Login onSubmit={onSubmit} />}
+      </AuthBlock>
+    </Layout>
+  );
 };
 
-export default AuthPage;
+export default memo(AuthPage);
