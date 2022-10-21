@@ -1,13 +1,21 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import { TLogin } from '../types/form/auth';
+import { TJwt, TLogin, TSingUp } from '../types/form/auth';
 import { defaultFetchOptions, EEndpoints } from './constants';
 
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({ ...defaultFetchOptions }),
   endpoints: (builder) => ({
-    getJwtToken: builder.mutation<any, Omit<TLogin, 'remember'>>({
+    singUp: builder.mutation<TJwt, TSingUp>({
+      // TODO: remove any
+      query: (body) => ({
+        url: EEndpoints.login,
+        method: 'POST',
+        body,
+      }),
+    }),
+    login: builder.mutation<TJwt, Omit<TLogin, 'remember'>>({
       // TODO: remove any
       query: (body) => ({
         url: EEndpoints.login,
@@ -24,4 +32,4 @@ export const authApi = createApi({
   }),
 });
 
-export const { useGetJwtTokenMutation, useLogoutMutation } = authApi;
+export const { useLoginMutation, useSingUpMutation, useLogoutMutation } = authApi;

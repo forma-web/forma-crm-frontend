@@ -1,37 +1,18 @@
 import { Link } from '@mui/material';
-import React, { memo, useCallback, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { memo, useState } from 'react';
 
-import { useGetJwtTokenMutation } from '../../api/auth';
-import { ERoutes } from '../../config';
 import Login from '../../containers/forms/Login';
+import Registration from '../../containers/forms/Registration';
+import { useAuth } from '../../hooks/useAuth';
 import Layout from '../../layouts/Layout';
 import { TitleContainer } from '../../styles/containers';
 import { TitleH1 } from '../../styles/typography';
-import { TLogin } from '../../types/form/auth';
 import { AuthBlock, AuthTitleDescription } from './styled';
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState<boolean>(true);
 
-  const [getJwtToken, result] = useGetJwtTokenMutation();
-  const navigate = useNavigate();
-
-  const onSubmit = (data: TLogin) => {
-    const { remember, ...body } = data;
-    getJwtToken(body);
-  };
-
-  useEffect(() => {
-    if (result.data) {
-      const jwtToken = result.data.meta?.access_token;
-      // TODO: Added error
-      if (jwtToken === undefined) return;
-
-      localStorage.setItem('jwt', jwtToken);
-      navigate(-1);
-    }
-  }, [result.data]);
+  const { handleLogin, handleSignUp } = useAuth();
 
   return (
     <Layout isAuth>
@@ -50,7 +31,7 @@ const AuthPage = () => {
             </Link>
           </AuthTitleDescription>
         </TitleContainer>
-        {isLogin && <Login onSubmit={onSubmit} />}
+        {isLogin ? <Login onSubmit={handleLogin} /> : <Registration onSubmit={handleSignUp} />}
       </AuthBlock>
     </Layout>
   );
