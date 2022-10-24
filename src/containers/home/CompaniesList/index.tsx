@@ -3,7 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ERoutes } from '../../../config';
-import { BlockStyled, ContainerStyled } from '../../../styles/containers';
+import { ContainerStyled } from '../../../styles/containers';
 import { TitleH1 } from '../../../styles/typography';
 import { ItemHeaderStyled, ItemStyled, ListHeaderStyled } from './styled';
 
@@ -18,7 +18,7 @@ const CompaniesList = () => {
           Создать компанию
         </Button>
       </ListHeaderStyled>
-      <BlockStyled>
+      {/* <BlockStyled>
         <ItemStyled>
           <ItemHeaderStyled>
             <Avatar />
@@ -31,7 +31,7 @@ const CompaniesList = () => {
             123
           </ItemHeaderStyled>
         </ItemStyled>
-      </BlockStyled>
+      </BlockStyled> */}
     </ContainerStyled>
   );
 };

@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { SINGUP_FIELDS } from '../../../constants/fields/auth';
 import { useFieldProps } from '../../../hooks/useFieldProps';
 import { FieldsSetStyled, FormStyled } from '../../../styles/form';
-import { TSingUp } from '../../../types/form/auth';
+import { TSingUp } from '../../../types/forms/auth';
 
 interface IAuthProps {
   onSubmit: (data: TSingUp) => void;

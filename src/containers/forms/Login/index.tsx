@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { LOGIN_FIELDS } from '../../../constants/fields/auth';
 import { useFieldProps } from '../../../hooks/useFieldProps';
 import { FieldsSetStyled, FormStyled } from '../../../styles/form';
-import { TLogin } from '../../../types/form/auth';
+import { TLogin } from '../../../types/forms/auth';
 
 interface IAuthProps {
   onSubmit: (data: TLogin) => void;

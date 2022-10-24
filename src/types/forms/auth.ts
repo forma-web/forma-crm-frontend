@@ -10,7 +10,3 @@ export type TSingUp = {
   email: string;
   password: string;
 };
-
-export type TJwt = {
-  access_token: string;
-};

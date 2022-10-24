@@ -1,5 +1,5 @@
 import { TFieldsData } from '../../types/form';
-import { TLogin, TSingUp } from '../../types/form/auth';
+import { TLogin, TSingUp } from '../../types/forms/auth';
 import { validEmailField, validPasswordField, validRequired } from '../check';
 
 export const LOGIN_FIELDS: TFieldsData<TLogin> = {
