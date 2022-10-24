@@ -1,10 +1,13 @@
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { useLoginMutation, useSingUpMutation } from '../api';
+import { setUser } from '../store/userSlice';
 import { TLogin } from '../types/forms/auth';
 
 export const useAuth = () => {
+  const dispatch = useDispatch();
   const [login, { data: dataLogin }] = useLoginMutation();
   const [handleSignUp, { data: dataSignUp }] = useSingUpMutation();
 
@@ -16,7 +19,10 @@ export const useAuth = () => {
   };
 
   useEffect(() => {
-    if (dataLogin || dataSignUp) navigate(-1);
+    const user = dataLogin ?? dataSignUp;
+    if (!user) return;
+    navigate(-1);
+    dispatch(setUser(user));
   }, [dataLogin, dataSignUp]);
 
   return { handleLogin, handleSignUp };

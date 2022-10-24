@@ -1,9 +1,11 @@
 import { Button } from '@mui/material';
 import React, { FC, memo, useCallback } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { ERoutes } from '../../../../config';
-import isAuthorized from '../../../../utils/isAuthorized';
+import { useUser } from '../../../../hooks/useUser';
+import { selectUser } from '../../../../store/selectors';
 import HeaderUser from '../HeaderUser';
 import { HeaderBlock, HeaderLogo, HeaderStyled } from './styled';
 
@@ -13,6 +15,9 @@ type THeaderProps = {
 
 const Header: FC<THeaderProps> = ({ isAuth = false }) => {
   const navigate = useNavigate();
+  const user = useSelector(selectUser);
+
+  useUser(false);
 
   const redirectHome = useCallback(() => {
     navigate(ERoutes.home);
@@ -27,7 +32,7 @@ const Header: FC<THeaderProps> = ({ isAuth = false }) => {
       <HeaderLogo onClick={redirectHome} />
       {!isAuth && (
         <HeaderBlock>
-          {isAuthorized() ? <HeaderUser /> : <Button onClick={redirecTLogin}>Войти</Button>}
+          {user.id === null ? <Button onClick={redirecTLogin}>Войти</Button> : <HeaderUser />}
         </HeaderBlock>
       )}
     </HeaderStyled>

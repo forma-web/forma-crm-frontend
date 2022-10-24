@@ -21,5 +21,5 @@ export type TFieldsData<T> = {
 
 export type TResponse<T, K = TJwtData> = {
   data: T;
-  meta: K;
+  meta?: K;
 };

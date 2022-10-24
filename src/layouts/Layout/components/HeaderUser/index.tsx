@@ -1,12 +1,14 @@
 import Logout from '@mui/icons-material/Logout';
 import { ListItemIcon, MenuItem } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 
-import logout from '../../../../utils/logout';
+import { logoutUser } from '../../../../store/userSlice';
 import { MenuItemStyled, MenuStyled } from './styled';
 
 const HeaderUser = () => {
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const open = Boolean(anchorEl);
@@ -16,6 +18,10 @@ const HeaderUser = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const logout = useCallback(() => {
+    dispatch(logoutUser());
+  }, []);
 
   return (
     <>

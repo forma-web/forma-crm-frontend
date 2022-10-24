@@ -1,26 +1,25 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import { TResponse } from '../types/form';
 import { TLogin, TSingUp } from '../types/forms/auth';
-import { TUser, TUserResponse } from '../types/forms/user';
+import { TUserData } from '../types/forms/user';
 import getUserData from '../utils/getUserData';
-import { defaultFetchOptions, EEndpoints } from './constants';
+import { defaultFetchOptions, EEndpointsAuth } from './constants';
 
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({ ...defaultFetchOptions }),
   endpoints: (builder) => ({
-    singUp: builder.mutation<TUser, TSingUp>({
+    singUp: builder.mutation<TUserData, TSingUp>({
       query: (body) => ({
-        url: EEndpoints.singUp,
+        url: EEndpointsAuth.singUp,
         method: 'POST',
         body,
       }),
       transformResponse: getUserData,
     }),
-    login: builder.mutation<TUser, Omit<TLogin, 'remember'>>({
+    login: builder.mutation<TUserData, Omit<TLogin, 'remember'>>({
       query: (body) => ({
-        url: EEndpoints.login,
+        url: EEndpointsAuth.login,
         method: 'POST',
         body,
       }),
@@ -28,11 +27,19 @@ export const authApi = createApi({
     }),
     logout: builder.mutation({
       query: () => ({
-        url: EEndpoints.logout,
+        url: EEndpointsAuth.logout,
         method: 'POST',
       }),
+    }),
+    currentUser: builder.mutation<TUserData, void>({
+      query: () => ({
+        url: EEndpointsAuth.currentUser,
+        method: 'GET',
+      }),
+      transformResponse: getUserData,
     }),
   }),
 });
 
-export const { useLoginMutation, useSingUpMutation, useLogoutMutation } = authApi;
+export const { useLoginMutation, useSingUpMutation, useCurrentUserMutation, useLogoutMutation } =
+  authApi;

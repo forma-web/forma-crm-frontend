@@ -16,6 +16,11 @@ export const userStoreSlice = createSlice({
   name: 'user',
   initialState: defaultValues,
   reducers: {
+    setUser: (state, action) => {
+      const { id, ...user } = action.payload;
+      if (id) state.id = id;
+      state.data = { ...state.data, ...user };
+    },
     logoutUser: (state) => {
       state.id = null;
       state.data = {};
@@ -24,6 +29,6 @@ export const userStoreSlice = createSlice({
   },
 });
 
-export const { logoutUser } = userStoreSlice.actions;
+export const { setUser, logoutUser } = userStoreSlice.actions;
 
 export default userStoreSlice;
