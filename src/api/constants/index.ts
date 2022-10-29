@@ -21,3 +21,7 @@ export enum EEndpointsAuth {
   singUp = 'auth/registration',
   logout = 'auth/logout',
 }
+
+export enum EEndpointsCompanies {
+  companiesList = 'companies',
+}
