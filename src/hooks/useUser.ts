@@ -17,23 +17,22 @@ export const useUser = (isRedirectToAuth = true) => {
   const user = useSelector(selectUser);
 
   useEffect(() => {
-    if (user.id !== null) return;
+    if (user.id !== null) {
+      companiesList();
+      return;
+    }
     if (isAuthorized()) {
       currentUser();
       companiesList();
+      return;
     }
     if (isRedirectToAuth) navigate(ERoutes.auth);
-  }, []);
+  }, [user.id]);
 
   useEffect(() => {
     if (!userData) return;
     dispatch(setUser(userData));
   }, [userData]);
-
-  useEffect(() => {
-    if (user.id === null) return;
-    companiesList();
-  }, [user.id]);
 
   useEffect(() => {
     if (!companiesData) return;

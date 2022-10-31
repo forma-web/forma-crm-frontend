@@ -2,19 +2,19 @@ export const validRequired = {
   required: 'Это поле должно быть заполнено',
 };
 
-export const validMinLength = {
+export const validMinLength = (value = 6) => ({
   minLength: {
-    value: 6,
-    message: 'Должно быть более 6 символов',
+    value,
+    message: `Должно быть более ${value} символов`,
   },
-};
+});
 
-export const validMaxLength = {
+export const validMaxLength = (value = 255) => ({
   maxLength: {
-    value: 255,
-    message: 'Должно быть менее 255 символов',
+    value,
+    message: `Должно быть меньше ${value} символов`,
   },
-};
+});
 
 export const validEmailPattern = {
   pattern: {
@@ -23,5 +23,7 @@ export const validEmailPattern = {
   },
 };
 
-export const validEmailField = { ...validRequired, ...validMaxLength, ...validEmailPattern };
-export const validPasswordField = { ...validRequired, ...validMinLength, ...validMaxLength };
+export const validTextField = { ...validMaxLength() };
+export const validRequiredTextField = { ...validRequired, ...validTextField };
+export const validEmailField = { ...validRequired, ...validMaxLength(), ...validEmailPattern };
+export const validPasswordField = { ...validRequired, ...validMinLength(6), ...validMaxLength() };

@@ -1,6 +1,6 @@
 import { TFieldsData } from '../../types/form';
 import { TLogin, TSingUp } from '../../types/forms/auth';
-import { validEmailField, validPasswordField, validRequired } from '../check';
+import { validEmailField, validPasswordField, validRequiredTextField } from '../check';
 
 export const LOGIN_FIELDS: TFieldsData<TLogin> = {
   email: {
@@ -19,11 +19,11 @@ export const LOGIN_FIELDS: TFieldsData<TLogin> = {
 export const SINGUP_FIELDS: TFieldsData<TSingUp> = {
   first_name: {
     label: 'Имя',
-    defaultCheck: validRequired,
+    defaultCheck: validRequiredTextField,
   },
   last_name: {
     label: 'Фамилия',
-    defaultCheck: validRequired,
+    defaultCheck: validRequiredTextField,
   },
   email: {
     label: 'Email',

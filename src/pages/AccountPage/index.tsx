@@ -1,15 +1,18 @@
-import { TextField } from '@mui/material';
 import React from 'react';
+import { useSelector } from 'react-redux';
 
-import Block from '../../components/Block';
 import Account from '../../containers/forms/Account';
+import { useUser } from '../../hooks/useUser';
 import Layout from '../../layouts/Layout';
+import { selectUser } from '../../store/selectors';
 import { ContainerStyled } from '../../styles/containers';
 import { TitleH1 } from '../../styles/typography';
 import { TUserFields } from '../../types/forms/user';
 
 const AccountPage = () => {
   const handleOnSubmit = (data: TUserFields) => console.log(data);
+  const { data: userData } = useSelector(selectUser);
+  useUser();
 
   return (
     <Layout>

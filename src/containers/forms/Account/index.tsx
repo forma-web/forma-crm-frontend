@@ -1,44 +1,58 @@
-import { TextField } from '@mui/material';
-import React, { FC, memo } from 'react';
+import { Button } from '@mui/material';
+import React, { FC, memo, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 
-import Block from '../../../components/Block';
+import FormBlock from '../../../components/FormBlock';
+import TextInput from '../../../components/TextInput';
 import { ACCOUNT_FIELDS } from '../../../constants/fields/account';
-import { LOGIN_FIELDS } from '../../../constants/fields/auth';
-import { useFieldProps } from '../../../hooks/useFieldProps';
-import { BlockBodyStyled, ContainerFormStyled } from '../../../styles/containers';
-import { TUser, TUserFields } from '../../../types/forms/user';
+import { selectUser } from '../../../store/selectors';
+import { ContainerFormStyled } from '../../../styles/containers';
+import { TUserFields } from '../../../types/forms/user';
 
 interface IAccountProps {
   onSubmit: (data: TUserFields) => void;
 }
 
-const Login: FC<IAccountProps> = ({ onSubmit }) => {
+const defaultValues = {
+  first_name: '',
+  last_name: '',
+  middle_name: '',
+  email: '',
+  phone: '',
+};
+
+const Account: FC<IAccountProps> = ({ onSubmit }) => {
+  const { data: userData } = useSelector(selectUser);
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<TUserFields>({ mode: 'all' });
+    reset,
+  } = useForm<TUserFields>({
+    mode: 'all',
+    defaultValues,
+  });
 
-  const getFieldProps = useFieldProps(ACCOUNT_FIELDS, register, errors);
+  useEffect(() => {
+    reset({ ...defaultValues, ...userData }, { keepValues: false });
+  }, [reset, userData]);
 
   return (
     <ContainerFormStyled onSubmit={handleSubmit(onSubmit)}>
-      <Block>
-        <BlockBodyStyled twoColumns>
-          <TextField {...getFieldProps('first_name')} />
-          <TextField {...getFieldProps('last_name')} />
-          <TextField {...getFieldProps('middle_name')} />
-        </BlockBodyStyled>
-      </Block>
-      <Block>
-        <BlockBodyStyled twoColumns>
-          <TextField {...getFieldProps('email')} />
-          <TextField {...getFieldProps('phone')} />
-        </BlockBodyStyled>
-      </Block>
+      <FormBlock<TUserFields> fieldsData={ACCOUNT_FIELDS} control={control} errors={errors}>
+        <TextInput name="first_name" />
+        <TextInput name="last_name" />
+        <TextInput name="middle_name" />
+      </FormBlock>
+      <FormBlock<TUserFields> fieldsData={ACCOUNT_FIELDS} control={control} errors={errors}>
+        <TextInput name="email" />
+        <TextInput name="phone" />
+      </FormBlock>
+      <Button disabled={!isValid}>Сохранить изменения</Button>
+      <Button onClick={() => reset()}>Отмена</Button>
     </ContainerFormStyled>
   );
 };
 
-export default memo(Login);
+export default memo(Account);

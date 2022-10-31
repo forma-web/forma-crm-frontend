@@ -5,13 +5,13 @@ import { TUser } from '../../types/forms/user';
 
 type TUserState = {
   id: number | null;
-  data: Partial<TUser>;
+  data: Omit<TUser, 'id'> | null;
   companies: TCompany[];
 };
 
 const defaultValues: TUserState = {
   id: null,
-  data: {},
+  data: null,
   companies: [],
 };
 
@@ -19,17 +19,17 @@ export const userStoreSlice = createSlice({
   name: 'user',
   initialState: defaultValues,
   reducers: {
-    setUser: (state, action: PayloadAction<Partial<TUser>>) => {
+    setUser: (state, action: PayloadAction<TUser>) => {
       const { id, ...user } = action.payload;
       if (id) state.id = id;
-      state.data = { ...state.data, ...user };
+      state.data = state.data ? { ...state.data, ...user } : user;
     },
     setCompanies: (state, action: PayloadAction<TCompany[]>) => {
       state.companies = action.payload;
     },
     logoutUser: (state) => {
       state.id = null;
-      state.data = {};
+      state.data = null;
       state.companies = [];
       localStorage.removeItem('jwt');
     },

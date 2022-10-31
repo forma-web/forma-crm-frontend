@@ -15,7 +15,6 @@ export const BlockBaseStyled = styled('div')`
 
   display: flex;
   flex-direction: column;
-  gap: ${INDENTS.marginBlock};
 `;
 
 export const ContainerStyled = styled('div')`
@@ -38,9 +37,12 @@ export const TitleContainer = styled(ContainerStyled)`
 
 export const BlockStyled = styled(BlockBaseStyled)<TBlockStyled>`
   padding: ${INDENTS.paddingBlockBase};
+  gap: ${INDENTS.marginBlock};
 `;
 
-export const BlockBodyStyled = styled(BlockBaseStyled)<TBlockStyled>`
+export const BlockBodyStyled = styled(BlockBaseStyled, {
+  shouldForwardProp: (props) => props !== 'twoColumns',
+})<TBlockStyled>`
   display: grid;
   ${({ twoColumns }) =>
     twoColumns

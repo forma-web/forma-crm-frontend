@@ -12,13 +12,16 @@ export const useFieldProps =
     const fieldData = fieldsData[name];
     const errorData = errors[name];
 
+    const { ref, ...fieldProps } = register(name as FieldPath<T>, {
+      ...fieldData.defaultCheck,
+      ...propsRegister,
+    });
+
     return {
       error: !!errorData,
       helperText: errorData?.message,
       label: fieldData.label,
-      ...register(name as FieldPath<T>, {
-        ...fieldData.defaultCheck,
-        ...propsRegister,
-      }),
+      ...fieldProps,
+      inputRef: ref,
     };
   };

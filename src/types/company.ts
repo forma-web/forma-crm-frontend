@@ -2,10 +2,10 @@ import { TResponse, TTime } from './form';
 
 export type TCompany = {
   id: number;
-  type: 'OWNER' | 'INVITED' | 'CREATED_BY_OWNER';
   name: string;
-  inn: string;
-  address: string;
+  type?: 'OWNER' | 'INVITED' | 'CREATED_BY_OWNER';
+  inn?: string;
+  address?: string;
 };
 
 export type TCompanyData = TCompany & TTime;
