@@ -6,8 +6,9 @@ import Registration from '../../containers/forms/Registration';
 import { useAuth } from '../../hooks/useAuth';
 import Layout from '../../layouts/Layout';
 import { TitleContainer } from '../../styles/containers';
+import { FormContainer } from '../../styles/form';
 import { TitleH1 } from '../../styles/typography';
-import { AuthBlock, AuthTitleDescription } from './styled';
+import { AuthTitleDescription } from './styled';
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState<boolean>(true);
@@ -16,7 +17,7 @@ const AuthPage = () => {
 
   return (
     <Layout isAuth>
-      <AuthBlock>
+      <FormContainer>
         <TitleContainer>
           <TitleH1>{isLogin ? 'Вход' : 'Регистрация'}</TitleH1>
           <AuthTitleDescription>
@@ -32,7 +33,7 @@ const AuthPage = () => {
           </AuthTitleDescription>
         </TitleContainer>
         {isLogin ? <Login onSubmit={handleLogin} /> : <Registration onSubmit={handleSignUp} />}
-      </AuthBlock>
+      </FormContainer>
     </Layout>
   );
 };

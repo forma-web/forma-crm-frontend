@@ -23,5 +23,5 @@ export enum EEndpointsAuth {
 }
 
 export enum EEndpointsCompanies {
-  companiesList = 'companies',
+  base = 'companies',
 }
