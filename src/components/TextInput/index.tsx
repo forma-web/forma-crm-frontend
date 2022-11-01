@@ -16,8 +16,15 @@ const TextInput = <T extends FieldValues>(props: TTextInputProps<T>) => {
       name={name as Path<T>}
       control={control}
       rules={rules}
-      render={({ field: { ref, ...field } }) => (
-        <TextField error={!!error} helperText={error} inputRef={ref} {...rest} {...field} />
+      render={({ field: { ref, value, ...field } }) => (
+        <TextField
+          error={!!error}
+          helperText={error}
+          inputRef={ref}
+          value={value ?? ''}
+          {...rest}
+          {...field}
+        />
       )}
     />
   );

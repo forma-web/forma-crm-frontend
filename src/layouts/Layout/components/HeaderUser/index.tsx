@@ -1,12 +1,13 @@
 import Logout from '@mui/icons-material/Logout';
 import { Divider } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { ERoutes } from '../../../../config';
 import { useActiveCompany } from '../../../../hooks/useActiveCompany';
+import { useUser } from '../../../../hooks/useUser';
 import { selectUser } from '../../../../store/selectors';
 import { logoutUser } from '../../../../store/userSlice';
 import { MenuItemStyled, MenuStyled } from './styled';

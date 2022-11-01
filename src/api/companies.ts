@@ -7,7 +7,7 @@ export const companiesApi = createApi({
   reducerPath: 'companiesApi',
   baseQuery: fetchBaseQuery({ ...defaultFetchOptions }),
   endpoints: (builder) => ({
-    compainesList: builder.mutation<TCompany[], void>({
+    compainesList: builder.query<TCompany[], void>({
       query: () => ({
         url: EEndpointsCompanies.companiesList,
         method: 'GET',
@@ -23,4 +23,4 @@ export const companiesApi = createApi({
   }),
 });
 
-export const { useCompainesListMutation } = companiesApi;
+export const { useCompainesListQuery } = companiesApi;

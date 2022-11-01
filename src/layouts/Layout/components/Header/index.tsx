@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { ERoutes } from '../../../../config';
-import { useUser } from '../../../../hooks/useUser';
 import { selectUser } from '../../../../store/selectors';
 import HeaderUser from '../HeaderUser';
 import { HeaderBlock, HeaderLogo, HeaderStyled } from './styled';
@@ -17,13 +16,11 @@ const Header: FC<THeaderProps> = ({ isAuth = false }) => {
   const navigate = useNavigate();
   const user = useSelector(selectUser);
 
-  useUser(false);
-
   const redirectHome = useCallback(() => {
     navigate(ERoutes.home);
   }, []);
 
-  const redirecTLogin = useCallback(() => {
+  const redirectLogin = useCallback(() => {
     navigate(ERoutes.auth);
   }, []);
 
@@ -32,7 +29,7 @@ const Header: FC<THeaderProps> = ({ isAuth = false }) => {
       <HeaderLogo onClick={redirectHome} />
       {!isAuth && (
         <HeaderBlock>
-          {user.id === null ? <Button onClick={redirecTLogin}>Войти</Button> : <HeaderUser />}
+          {user.id === null ? <Button onClick={redirectLogin}>Войти</Button> : <HeaderUser />}
         </HeaderBlock>
       )}
     </HeaderStyled>

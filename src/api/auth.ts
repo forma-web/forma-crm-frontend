@@ -8,6 +8,7 @@ import { defaultFetchOptions, EEndpointsAuth } from './constants';
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({ ...defaultFetchOptions }),
+  tagTypes: ['Users'],
   endpoints: (builder) => ({
     singUp: builder.mutation<TUserData, TSingUp>({
       query: (body) => ({
@@ -31,15 +32,7 @@ export const authApi = createApi({
         method: 'POST',
       }),
     }),
-    currentUser: builder.mutation<TUserData, void>({
-      query: () => ({
-        url: EEndpointsAuth.currentUser,
-        method: 'GET',
-      }),
-      transformResponse: getUserData,
-    }),
   }),
 });
 
-export const { useLoginMutation, useSingUpMutation, useCurrentUserMutation, useLogoutMutation } =
-  authApi;
+export const { useLoginMutation, useSingUpMutation, useLogoutMutation } = authApi;

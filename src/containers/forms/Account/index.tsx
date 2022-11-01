@@ -14,7 +14,7 @@ interface IAccountProps {
   onSubmit: (data: TUserFields) => void;
 }
 
-const defaultValues = {
+const defaultValues: TUserFields = {
   first_name: '',
   last_name: '',
   middle_name: '',
@@ -49,7 +49,9 @@ const Account: FC<IAccountProps> = ({ onSubmit }) => {
         <TextInput name="email" />
         <TextInput name="phone" />
       </FormBlock>
-      <Button disabled={!isValid}>Сохранить изменения</Button>
+      <Button disabled={!isValid} type="submit">
+        Сохранить изменения
+      </Button>
       <Button onClick={() => reset()}>Отмена</Button>
     </ContainerFormStyled>
   );

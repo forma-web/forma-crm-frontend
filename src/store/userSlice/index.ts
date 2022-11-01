@@ -20,18 +20,18 @@ export const userStoreSlice = createSlice({
   initialState: defaultValues,
   reducers: {
     setUser: (state, action: PayloadAction<TUser>) => {
-      const { id, ...user } = action.payload;
-      if (id) state.id = id;
+      const { id, avatar, ...user } = action.payload;
+      state.id = id;
       state.data = state.data ? { ...state.data, ...user } : user;
     },
     setCompanies: (state, action: PayloadAction<TCompany[]>) => {
       state.companies = action.payload;
     },
     logoutUser: (state) => {
+      localStorage.removeItem('jwt');
       state.id = null;
       state.data = null;
       state.companies = [];
-      localStorage.removeItem('jwt');
     },
   },
 });
