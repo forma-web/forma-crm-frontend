@@ -12,6 +12,7 @@ import { ACCOUNT_FIELDS } from '../../../constants/fields/account';
 import { GENDER_OPTIONS } from '../../../constants/gender';
 import { selectUser } from '../../../store/selectors';
 import { ContainerFormStyled } from '../../../styles/containers';
+import { FormButtons } from '../../../styles/form';
 import { TUserFields } from '../../../types/forms/user';
 
 interface IAccountProps {
@@ -32,7 +33,7 @@ const Account: FC<IAccountProps> = ({ onSubmit }) => {
   const {
     control,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isDirty },
     reset,
   } = useForm<TUserFields>({
     mode: 'all',
@@ -56,10 +57,14 @@ const Account: FC<IAccountProps> = ({ onSubmit }) => {
         <TextInput name="email" />
         <PhoneInput name="phone" />
       </FormBlock>
-      <Button disabled={!isValid} type="submit">
-        Сохранить изменения
-      </Button>
-      <Button onClick={() => reset()}>Отмена</Button>
+      {isDirty && (
+        <FormButtons>
+          <Button disabled={!isValid} type="submit" variant="outlined">
+            Сохранить изменения
+          </Button>
+          <Button onClick={() => reset()}>Отмена</Button>
+        </FormButtons>
+      )}
     </ContainerFormStyled>
   );
 };

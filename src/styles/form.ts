@@ -22,3 +22,11 @@ export const FieldsSetStyled = styled('div')`
   justify-content: flex-start;
   gap: ${INDENTS.marginFormFieldVertical};
 `;
+
+export const FormButtons = styled('div')`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: ${INDENTS.marginFormFieldHorizontal};
+  gap: ${INDENTS.paddingControlHorizontal};
+`;
