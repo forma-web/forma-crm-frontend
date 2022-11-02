@@ -11,7 +11,7 @@ import { TitleH1 } from '../../styles/typography';
 import { TUserFields } from '../../types/forms/user';
 
 const AccountPage = () => {
-  const { id, data: userData } = useSelector(selectUser);
+  const { id } = useSelector(selectUser);
   const [editUser] = useEditUserMutation();
 
   useUser();
@@ -25,7 +25,8 @@ const AccountPage = () => {
     <Layout>
       <ContainerStyled>
         <TitleH1>Личный кабинет</TitleH1>
-        {userData && <Account onSubmit={handleOnSubmit} />}
+        <Account onSubmit={handleOnSubmit} />
+        {/* {userData && <Account onSubmit={handleOnSubmit} />} */}
       </ContainerStyled>
     </Layout>
   );

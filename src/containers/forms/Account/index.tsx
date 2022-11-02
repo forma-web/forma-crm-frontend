@@ -4,8 +4,10 @@ import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 
 import FormBlock from '../../../components/FormBlock';
+import SelectField from '../../../components/SelectField';
 import TextInput from '../../../components/TextInput';
 import { ACCOUNT_FIELDS } from '../../../constants/fields/account';
+import { GENDER_OPTIONS } from '../../../constants/gender';
 import { selectUser } from '../../../store/selectors';
 import { ContainerFormStyled } from '../../../styles/containers';
 import { TUserFields } from '../../../types/forms/user';
@@ -20,6 +22,7 @@ const defaultValues: TUserFields = {
   middle_name: '',
   email: '',
   phone: '',
+  sex: '',
 };
 
 const Account: FC<IAccountProps> = ({ onSubmit }) => {
@@ -44,6 +47,7 @@ const Account: FC<IAccountProps> = ({ onSubmit }) => {
         <TextInput name="first_name" />
         <TextInput name="last_name" />
         <TextInput name="middle_name" />
+        <SelectField name="sex" options={GENDER_OPTIONS} />
       </FormBlock>
       <FormBlock<TUserFields> fieldsData={ACCOUNT_FIELDS} control={control} errors={errors}>
         <TextInput name="email" />

@@ -1,3 +1,6 @@
+import { TextFieldProps } from '@mui/material';
+import { Control, FieldValues } from 'react-hook-form';
+
 export type TTime = {
   created_at?: Date;
   updated_at?: Date;
@@ -17,6 +20,13 @@ export type TFieldsData<T> = {
     label: string;
     defaultCheck?: Record<string, unknown>;
   };
+};
+
+export type TControlledField<T extends FieldValues> = {
+  name: keyof T;
+  error?: string;
+  control?: Control<T, unknown>;
+  rules?: Record<string, unknown>;
 };
 
 export type TResponse<T, K = TJwtData> = {

@@ -6,7 +6,7 @@ export type TUser = {
   last_name: string;
   middle_name?: string;
   birth_date?: Date;
-  sex?: 'M' | 'F';
+  sex?: 'M' | 'F' | '';
   email: string;
   phone?: string;
   avatar?: string;
