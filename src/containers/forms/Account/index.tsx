@@ -3,7 +3,9 @@ import React, { FC, memo, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 
+import DateInput from '../../../components/DateInput';
 import FormBlock from '../../../components/FormBlock';
+import PhoneInput from '../../../components/PhoneInput';
 import SelectField from '../../../components/SelectField';
 import TextInput from '../../../components/TextInput';
 import { ACCOUNT_FIELDS } from '../../../constants/fields/account';
@@ -48,10 +50,11 @@ const Account: FC<IAccountProps> = ({ onSubmit }) => {
         <TextInput name="last_name" />
         <TextInput name="middle_name" />
         <SelectField name="sex" options={GENDER_OPTIONS} />
+        <DateInput name="birth_date" />
       </FormBlock>
       <FormBlock<TUserFields> fieldsData={ACCOUNT_FIELDS} control={control} errors={errors}>
         <TextInput name="email" />
-        <TextInput name="phone" />
+        <PhoneInput name="phone" />
       </FormBlock>
       <Button disabled={!isValid} type="submit">
         Сохранить изменения

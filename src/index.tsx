@@ -1,5 +1,7 @@
 import './index.css';
 
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
@@ -12,8 +14,10 @@ const root = createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale="ru">
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </LocalizationProvider>
   </Provider>,
 );

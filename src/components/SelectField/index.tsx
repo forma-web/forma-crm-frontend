@@ -6,6 +6,8 @@ import {
   Select,
   SelectChangeEvent,
   SelectProps,
+  TextField,
+  TextFieldProps,
 } from '@mui/material';
 import React, { useState } from 'react';
 import { Controller, FieldValues, Path } from 'react-hook-form';
@@ -18,34 +20,32 @@ type TSelectProps<T extends FieldValues> = {
     label: string;
   }>;
 } & TControlledField<T> &
-  SelectProps<string>;
+  TextFieldProps;
 
 const SelectField = <T extends FieldValues>(props: TSelectProps<T>) => {
-  const [currValue, setCurrValue] = useState<string>('');
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setCurrValue(event.target.value as string);
-  };
-
-  const { name, options, control, rules, error, label, ...rest } = props;
+  const { name, options, control, rules, error, ...rest } = props;
   return (
     <Controller
       name={name as Path<T>}
       control={control}
       rules={rules}
-      render={({ field: { value, onChange, ...field } }) => (
-        <FormControl fullWidth error={!!error}>
-          <InputLabel>{label}</InputLabel>
-          <Select label={label} value={currValue} onChange={handleChange} {...field} {...rest}>
-            <MenuItem value="">Не выбрано</MenuItem>
-            {options.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </Select>
-          <FormHelperText>{error}</FormHelperText>
-        </FormControl>
+      render={({ field: { ref, value, ...field } }) => (
+        <TextField
+          select
+          error={!!error}
+          helperText={error}
+          inputRef={ref}
+          value={value ?? ''}
+          {...rest}
+          {...field}
+        >
+          <MenuItem value="">Не выбрано</MenuItem>
+          {options.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
       )}
     />
   );
