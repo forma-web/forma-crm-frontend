@@ -3,16 +3,16 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { TCompaniesResponse, TCompany, TCompanyData } from '../types/company';
 import { TResponse } from '../types/form';
 import { TCreateCompany } from '../types/forms/company';
-import { defaultFetchOptions, EEndpointsCompanies } from './constants';
+import { defaultFetchOptions } from './constants';
 
 export const companiesApi = createApi({
   reducerPath: 'companiesApi',
-  baseQuery: fetchBaseQuery({ ...defaultFetchOptions }),
+  baseQuery: fetchBaseQuery({ ...defaultFetchOptions('companies') }),
   tagTypes: ['Companies'],
   endpoints: (builder) => ({
     compainesList: builder.query<TCompany[], void>({
       query: () => ({
-        url: EEndpointsCompanies.base,
+        url: '/',
         method: 'GET',
       }),
       providesTags: ['Companies'],
@@ -26,7 +26,7 @@ export const companiesApi = createApi({
     }),
     createCompany: builder.mutation<TCompany, TCreateCompany>({
       query: (body) => ({
-        url: EEndpointsCompanies.base,
+        url: '/',
         method: 'POST',
         body,
       }),

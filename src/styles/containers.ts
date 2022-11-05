@@ -1,3 +1,4 @@
+import { css } from '@emotion/react';
 import { styled } from '@mui/material';
 
 import { COLORS } from './colors';
@@ -6,6 +7,12 @@ import { INDENTS } from './size';
 type TBlockStyled = {
   twoColumns?: boolean;
 };
+
+const ContainerBase = css`
+  display: flex;
+  flex-direction: column;
+  gap: ${INDENTS.marginBlockSet};
+`;
 
 export const BlockBaseStyled = styled('div')`
   width: 100%;
@@ -25,9 +32,11 @@ export const ContainerStyled = styled('div')`
 `;
 
 export const ContainerFormStyled = styled('form')`
-  display: flex;
-  flex-direction: column;
-  gap: ${INDENTS.marginBlockSet};
+  ${ContainerBase}
+`;
+
+export const ContainerBlockStyled = styled('div')`
+  ${ContainerBase}
 `;
 
 export const TitleContainer = styled('header')`
@@ -52,13 +61,13 @@ export const BlockBodyStyled = styled(BlockBaseStyled, {
   display: grid;
   ${({ twoColumns }) =>
     twoColumns
-      ? `
-    grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: ${INDENTS.marginFormFieldHorizontal};
-    grid-row-gap: ${INDENTS.marginFormFieldVertical};
-  `
-      : `
-    grid-template-columns: 1fr;
-    grid-row-gap: ${INDENTS.marginBlock};
-  `};
+      ? css`
+          grid-template-columns: repeat(2, 1fr);
+          grid-column-gap: ${INDENTS.marginFormFieldHorizontal};
+          grid-row-gap: ${INDENTS.marginFormFieldVertical};
+        `
+      : css`
+          grid-template-columns: 1fr;
+          grid-row-gap: ${INDENTS.marginBlock};
+        `};
 `;

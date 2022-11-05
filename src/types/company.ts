@@ -8,6 +8,22 @@ export type TCompany = {
   address?: string;
 };
 
+export type TDepartment = {
+  id: number;
+  name: string;
+};
+
+export type TOffices = {
+  id: number;
+  name: string;
+  address: string;
+};
+
+export type TFullCompany = TCompany & {
+  departments: TDepartment[];
+  offices: TOffices[];
+};
+
 export type TCompanyFields = Omit<TCompany, 'id'>;
 
 export type TCompanyData = TCompany & TTime;

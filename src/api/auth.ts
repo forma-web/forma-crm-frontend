@@ -7,7 +7,7 @@ import { defaultFetchOptions, EEndpointsAuth } from './constants';
 
 export const authApi = createApi({
   reducerPath: 'authApi',
-  baseQuery: fetchBaseQuery({ ...defaultFetchOptions }),
+  baseQuery: fetchBaseQuery({ ...defaultFetchOptions() }),
   tagTypes: ['Users'],
   endpoints: (builder) => ({
     singUp: builder.mutation<TUserData, TSingUp>({

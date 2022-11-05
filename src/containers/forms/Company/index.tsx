@@ -1,5 +1,5 @@
 import { Button } from '@mui/material';
-import React, { FC, memo, useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 
@@ -11,17 +11,13 @@ import { ContainerFormStyled } from '../../../styles/containers';
 import { FormButtons } from '../../../styles/form';
 import { TCompanyFields } from '../../../types/company';
 
-interface ICompanyProps {
-  onSubmit: (data: TCompanyFields) => void;
-}
-
 const defaultValues = {
   name: '',
   inn: '',
   address: '',
 };
 
-const Company: FC<ICompanyProps> = ({ onSubmit }) => {
+const Company = () => {
   const { data: userData } = useSelector(selectUser);
   const {
     control,
@@ -32,6 +28,10 @@ const Company: FC<ICompanyProps> = ({ onSubmit }) => {
     mode: 'all',
     defaultValues,
   });
+
+  const onSubmit = (data: TCompanyFields) => {
+    console.log(data);
+  };
 
   useEffect(() => {
     reset({ ...defaultValues, ...userData }, { keepValues: false });

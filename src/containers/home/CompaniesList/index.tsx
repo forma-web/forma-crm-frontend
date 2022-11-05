@@ -8,7 +8,7 @@ import { useActiveCompany } from '../../../hooks/useActiveCompany';
 import { selectCompanies } from '../../../store/selectors';
 import { BlockBaseStyled, ContainerStyled, TitleContainer } from '../../../styles/containers';
 import { TitleH1 } from '../../../styles/typography';
-import { ItemHeaderStyled, ItemStyled } from './styled';
+import { ItemBodyStyled, ItemLinkStyled } from './styled';
 
 const CompaniesList = () => {
   const navigate = useNavigate();
@@ -26,12 +26,12 @@ const CompaniesList = () => {
       </TitleContainer>
       <BlockBaseStyled>
         {companies.map((company) => (
-          <ItemStyled key={company.id} onClick={() => handleClickCompany(company.id)}>
-            <ItemHeaderStyled>
+          <ItemLinkStyled key={company.id} onClick={() => handleClickCompany(company.id)}>
+            <ItemBodyStyled>
               <Avatar />
               {company.name}
-            </ItemHeaderStyled>
-          </ItemStyled>
+            </ItemBodyStyled>
+          </ItemLinkStyled>
         ))}
       </BlockBaseStyled>
     </ContainerStyled>
