@@ -30,7 +30,13 @@ export const ContainerFormStyled = styled('form')`
   gap: ${INDENTS.marginBlockSet};
 `;
 
-export const TitleContainer = styled(ContainerStyled)`
+export const TitleContainer = styled('header')`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const TitleVerticalContainer = styled(ContainerStyled)`
   user-select: none;
   gap: ${INDENTS.gapTitleVertical};
 `;

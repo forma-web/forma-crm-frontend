@@ -8,6 +8,8 @@ export type TCompany = {
   address?: string;
 };
 
+export type TCompanyFields = Omit<TCompany, 'id'>;
+
 export type TCompanyData = TCompany & TTime;
 
 export type TCompaniesResponse = TResponse<TCompanyData[]>;

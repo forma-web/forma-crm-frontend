@@ -3,12 +3,6 @@ import { styled } from '@mui/material';
 import { COLORS } from '../../../styles/colors';
 import { INDENTS } from '../../../styles/size';
 
-export const ListHeaderStyled = styled('header')`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
 export const ItemStyled = styled('a')`
   display: flex;
   align-items: center;

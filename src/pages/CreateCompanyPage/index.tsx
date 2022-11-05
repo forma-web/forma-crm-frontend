@@ -8,8 +8,7 @@ import CreateCompany from '../../containers/forms/CreateCompany';
 import { useActiveCompany } from '../../hooks/useActiveCompany';
 import { useUser } from '../../hooks/useUser';
 import Layout from '../../layouts/Layout';
-import { selectUser } from '../../store/selectors';
-import { TitleContainer } from '../../styles/containers';
+import { TitleVerticalContainer } from '../../styles/containers';
 import { FormContainer } from '../../styles/form';
 import { TitleH1 } from '../../styles/typography';
 
@@ -28,9 +27,9 @@ const CreateCompanyPage = () => {
   return (
     <Layout>
       <FormContainer>
-        <TitleContainer>
+        <TitleVerticalContainer>
           <TitleH1>Создание компании</TitleH1>
-        </TitleContainer>
+        </TitleVerticalContainer>
         <CreateCompany onSubmit={createCompany} />
       </FormContainer>
     </Layout>
