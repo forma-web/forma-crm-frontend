@@ -26,10 +26,6 @@ const Login: FC<IAuthProps> = ({ onSubmit }) => {
       <FieldsSetStyled>
         <TextField {...getFieldProps('email')} />
         <TextField type="password" {...getFieldProps('password')} />
-        {/* <FormControlLabel
-            control={<Checkbox {...getFieldProps('remember')} />}
-            label={LOGIN_FIELDS.remember.label}
-          /> */}
       </FieldsSetStyled>
       <LoadingButton type="submit" variant="outlined" disabled={!isValid}>
         Войти

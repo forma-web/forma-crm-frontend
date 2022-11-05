@@ -1,4 +1,11 @@
-import { FieldErrorsImpl, FieldPath, FieldValues, UseFormRegister } from 'react-hook-form';
+import { TextFieldProps } from '@mui/material';
+import {
+  DeepRequired,
+  FieldErrorsImpl,
+  FieldPath,
+  FieldValues,
+  UseFormRegister,
+} from 'react-hook-form';
 
 import { TFieldsData } from '../types/form';
 
@@ -6,7 +13,7 @@ export const useFieldProps =
   <T extends FieldValues>(
     fieldsData: TFieldsData<T>,
     register: UseFormRegister<T>,
-    errors: FieldErrorsImpl<T>,
+    errors: FieldErrorsImpl<DeepRequired<T>>,
   ) =>
   (name: keyof T, propsRegister: FieldValues = {}) => {
     const fieldData = fieldsData[name];
@@ -23,5 +30,5 @@ export const useFieldProps =
       label: fieldData.label,
       ...fieldProps,
       inputRef: ref,
-    };
+    } as TextFieldProps;
   };
