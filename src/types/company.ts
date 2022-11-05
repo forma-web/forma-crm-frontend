@@ -25,6 +25,8 @@ export type TFullCompany = TCompany & {
 };
 
 export type TCompanyFields = Omit<TCompany, 'id'>;
+export type TDepartmentFields = Omit<TDepartment, 'id'>;
+export type TOfficesFields = Omit<TOffices, 'id'>;
 
 export type TCompanyData = TCompany & TTime;
 
