@@ -1,5 +1,5 @@
-import { TDepartmentFields, TOfficesFields } from '../../types/company';
 import { TFieldsData } from '../../types/form';
+import { TDepartmentFields, TOfficesFields } from '../../types/forms/company';
 import { validRequiredTextField } from '../check';
 
 export const DEPARTMENT_FIELDS: TFieldsData<TDepartmentFields> = {

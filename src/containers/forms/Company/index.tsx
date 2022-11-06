@@ -3,13 +3,14 @@ import React, { memo, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 
+import { useEditCompanyMutation } from '../../../api';
 import FormBlock from '../../../components/FormBlock';
 import TextInput from '../../../components/TextInput';
 import { COMPANY_FIELDS } from '../../../constants/fields/company';
-import { selectUser } from '../../../store/selectors';
+import { selectFullCompany } from '../../../store/selectors';
 import { ContainerFormStyled } from '../../../styles/containers';
 import { FormButtons } from '../../../styles/form';
-import { TCompanyFields } from '../../../types/company';
+import { TCompanyFields } from '../../../types/forms/company';
 
 const defaultValues = {
   name: '',
@@ -18,7 +19,9 @@ const defaultValues = {
 };
 
 const Company = () => {
-  const { data: userData } = useSelector(selectUser);
+  const [editCompany] = useEditCompanyMutation();
+  const { id, data: companyData } = useSelector(selectFullCompany);
+
   const {
     control,
     handleSubmit,
@@ -30,12 +33,13 @@ const Company = () => {
   });
 
   const onSubmit = (data: TCompanyFields) => {
-    console.log(data);
+    if (id === null) return;
+    editCompany({ id, ...data });
   };
 
   useEffect(() => {
-    reset({ ...defaultValues, ...userData }, { keepValues: false });
-  }, [reset, userData]);
+    reset({ ...defaultValues, ...(companyData ?? {}) }, { keepValues: false });
+  }, [reset, companyData]);
 
   return (
     <ContainerFormStyled onSubmit={handleSubmit(onSubmit)}>

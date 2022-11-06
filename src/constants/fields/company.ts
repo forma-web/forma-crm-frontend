@@ -1,6 +1,5 @@
-import { TCompanyFields } from '../../types/company';
 import { TFieldsData } from '../../types/form';
-import { TCreateCompany } from '../../types/forms/company';
+import { TCompanyFields, TCreateCompany } from '../../types/forms/company';
 import { validRequiredTextField, validTextField } from '../check';
 
 export const CREATE_COMPANY_FIELDS: TFieldsData<TCreateCompany> = {

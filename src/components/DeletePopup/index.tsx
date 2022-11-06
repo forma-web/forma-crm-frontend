@@ -8,11 +8,6 @@ type TDeletePopupProps = {
 } & PropsWithChildren;
 
 const DeletePopup: FC<TDeletePopupProps> = ({ open, onClose, onDelete, children }) => {
-  const handleOnDelete = useCallback(() => {
-    onClose();
-    onDelete();
-  }, []);
-
   return (
     <div>
       <Dialog open={open} onClose={onClose}>
@@ -20,7 +15,7 @@ const DeletePopup: FC<TDeletePopupProps> = ({ open, onClose, onDelete, children 
           <DialogContentText>{children ?? 'Вы уверены, что хотите удалить?'}</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleOnDelete}>Удалить</Button>
+          <Button onClick={onDelete}>Удалить</Button>
           <Button onClick={onClose} variant="outlined">
             Не удалять
           </Button>

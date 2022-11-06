@@ -10,6 +10,10 @@ export type TJwt = {
   access_token: string;
 };
 
+export type TId = {
+  id: number;
+};
+
 export type TJwtData = TJwt & {
   token_type: string;
   expires_in: number;

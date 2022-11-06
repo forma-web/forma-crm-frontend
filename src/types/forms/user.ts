@@ -1,5 +1,3 @@
-import { TResponse, TTime } from '../form';
-
 export type TUser = {
   id: number;
   first_name: string;
@@ -13,7 +11,3 @@ export type TUser = {
 };
 
 export type TUserFields = Partial<Omit<TUser, 'id' | 'avatar'>>;
-
-export type TUserData = TUser & TTime;
-
-export type TUserResponse = TResponse<TUserData>;

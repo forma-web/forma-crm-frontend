@@ -1,7 +1,7 @@
 import CloseIcon from '@mui/icons-material/Close';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { IconButton, TableCell, TableRow, TextField } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { useFieldProps } from '../../hooks/useFieldProps';
@@ -26,6 +26,11 @@ const ItemForm = <F extends TFields, T extends TFieldsWithID<F>>(props: TItemFor
 
   const getFieldProps = useFieldProps<F>(fieldsData, register, errors);
 
+  const sendFetch = useCallback((formData: F) => {
+    onSubmit(formData);
+    onCancel();
+  }, []);
+
   return (
     <TableRow>
       {fields.map((cell) => (
@@ -41,7 +46,7 @@ const ItemForm = <F extends TFields, T extends TFieldsWithID<F>>(props: TItemFor
         <IconButton onClick={onCancel}>
           <CloseIcon />
         </IconButton>
-        <IconButton onClick={handleSubmit(onSubmit)} color="primary" disabled={!isValid}>
+        <IconButton onClick={handleSubmit(sendFetch)} color="primary" disabled={!isValid}>
           <EditOutlinedIcon />
         </IconButton>
       </TableCell>
