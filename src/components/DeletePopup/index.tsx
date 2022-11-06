@@ -1,11 +1,4 @@
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText } from '@mui/material';
 import React, { FC, PropsWithChildren, useCallback } from 'react';
 
 type TDeletePopupProps = {
@@ -23,15 +16,13 @@ const DeletePopup: FC<TDeletePopupProps> = ({ open, onClose, onDelete, children 
   return (
     <div>
       <Dialog open={open} onClose={onClose}>
-        {children && (
-          <DialogContent>
-            <DialogContentText>{children}</DialogContentText>
-          </DialogContent>
-        )}
+        <DialogContent>
+          <DialogContentText>{children ?? 'Вы уверены, что хотите удалить?'}</DialogContentText>
+        </DialogContent>
         <DialogActions>
-          <Button onClick={onClose}>Не удалять</Button>
-          <Button onClick={handleOnDelete} autoFocus>
-            Удалить
+          <Button onClick={handleOnDelete}>Удалить</Button>
+          <Button onClick={onClose} variant="outlined">
+            Не удалять
           </Button>
         </DialogActions>
       </Dialog>

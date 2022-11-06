@@ -15,6 +15,12 @@ export type TJwtData = TJwt & {
   expires_in: number;
 };
 
+export type TFields = {
+  [x: string]: unknown;
+};
+
+export type TFieldsWithID<T extends TFields> = T & { id: number };
+
 export type TFieldsData<T> = {
   [K in keyof T]: {
     label: string;
