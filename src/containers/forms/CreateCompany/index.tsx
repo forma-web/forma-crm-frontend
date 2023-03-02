@@ -3,32 +3,31 @@ import { TextField } from '@mui/material';
 import React, { FC, memo } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { LOGIN_FIELDS } from '../../../constants/fields/auth';
+import { CREATE_COMPANY_FIELDS } from '../../../constants/fields/company';
 import { useFieldProps } from '../../../hooks/useFieldProps';
 import { FieldsSetStyled, FormStyled } from '../../../styles/form';
-import { TLogin } from '../../../types/forms/auth';
+import { TCreateCompany } from '../../../types/forms/company';
 
-interface IAuthProps {
-  onSubmit: (data: TLogin) => void;
+interface ICreateCompanyProps {
+  onSubmit: (data: TCreateCompany) => void;
 }
 
-const Login: FC<IAuthProps> = ({ onSubmit }) => {
+const Login: FC<ICreateCompanyProps> = ({ onSubmit }) => {
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<TLogin>({ mode: 'all' });
+  } = useForm<TCreateCompany>({ mode: 'all' });
 
-  const getFieldProps = useFieldProps(LOGIN_FIELDS, register, errors);
+  const getFieldProps = useFieldProps(CREATE_COMPANY_FIELDS, register, errors);
 
   return (
     <FormStyled onSubmit={handleSubmit(onSubmit)}>
       <FieldsSetStyled>
-        <TextField {...getFieldProps('email')} />
-        <TextField type="password" {...getFieldProps('password')} />
+        <TextField {...getFieldProps('name')} />
       </FieldsSetStyled>
       <LoadingButton type="submit" variant="outlined" disabled={!isValid}>
-        Войти
+        Создать компанию
       </LoadingButton>
     </FormStyled>
   );

@@ -3,11 +3,16 @@ import React, { FC, memo, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 
+import DateInput from '../../../components/DateInput';
 import FormBlock from '../../../components/FormBlock';
+import PhoneInput from '../../../components/PhoneInput';
+import SelectField from '../../../components/SelectField';
 import TextInput from '../../../components/TextInput';
 import { ACCOUNT_FIELDS } from '../../../constants/fields/account';
+import { GENDER_OPTIONS } from '../../../constants/gender';
 import { selectUser } from '../../../store/selectors';
 import { ContainerFormStyled } from '../../../styles/containers';
+import { FormButtons } from '../../../styles/form';
 import { TUserFields } from '../../../types/forms/user';
 
 interface IAccountProps {
@@ -20,6 +25,7 @@ const defaultValues: TUserFields = {
   middle_name: '',
   email: '',
   phone: '',
+  sex: '',
 };
 
 const Account: FC<IAccountProps> = ({ onSubmit }) => {
@@ -27,7 +33,7 @@ const Account: FC<IAccountProps> = ({ onSubmit }) => {
   const {
     control,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isDirty },
     reset,
   } = useForm<TUserFields>({
     mode: 'all',
@@ -44,15 +50,21 @@ const Account: FC<IAccountProps> = ({ onSubmit }) => {
         <TextInput name="first_name" />
         <TextInput name="last_name" />
         <TextInput name="middle_name" />
+        <SelectField name="sex" options={GENDER_OPTIONS} />
+        <DateInput name="birth_date" />
       </FormBlock>
       <FormBlock<TUserFields> fieldsData={ACCOUNT_FIELDS} control={control} errors={errors}>
         <TextInput name="email" />
-        <TextInput name="phone" />
+        <PhoneInput name="phone" />
       </FormBlock>
-      <Button disabled={!isValid} type="submit">
-        Сохранить изменения
-      </Button>
-      <Button onClick={() => reset()}>Отмена</Button>
+      {isDirty && (
+        <FormButtons>
+          <Button disabled={!isValid} type="submit" variant="outlined">
+            Сохранить изменения
+          </Button>
+          <Button onClick={() => reset()}>Отмена</Button>
+        </FormButtons>
+      )}
     </ContainerFormStyled>
   );
 };

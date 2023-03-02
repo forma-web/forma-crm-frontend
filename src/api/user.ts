@@ -1,20 +1,20 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import { TUser, TUserData } from '../types/forms/user';
-import getUserData from '../utils/getUserData';
+import { TUser } from '../types/forms/user';
+import transformData from '../utils/transformData';
 import { defaultFetchOptions, EEndpointsAuth } from './constants';
 
 export const userApi = createApi({
   reducerPath: 'userApi',
-  baseQuery: fetchBaseQuery({ ...defaultFetchOptions }),
+  baseQuery: fetchBaseQuery({ ...defaultFetchOptions() }),
   tagTypes: ['Users'],
   endpoints: (builder) => ({
-    currentUser: builder.query<TUserData, void>({
+    currentUser: builder.query<TUser, void>({
       query: () => ({
         url: EEndpointsAuth.currentUser,
         method: 'GET',
       }),
-      transformResponse: getUserData,
+      transformResponse: transformData<TUser>,
       providesTags: ['Users'],
     }),
     editUser: builder.mutation<void, Partial<TUser> & Pick<TUser, 'id'>>({

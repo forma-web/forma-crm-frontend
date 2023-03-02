@@ -28,6 +28,7 @@ module.exports = {
     'import/no-duplicates': 'error',
     'import/prefer-default-export': 'off',
     'no-param-reassign': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/indent': 'off',
     'typescript-eslint/indent': 'off',
     'react/require-default-props': 'off',
@@ -75,6 +76,7 @@ module.exports = {
       plugins: ['@typescript-eslint'],
       rules: {
         '@typescript-eslint/indent': ['off'],
+        '@typescript-eslint/ban-ts-comment': ['off'],
       },
     },
   ],

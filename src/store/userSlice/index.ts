@@ -29,6 +29,7 @@ export const userStoreSlice = createSlice({
     },
     logoutUser: (state) => {
       localStorage.removeItem('jwt');
+      localStorage.removeItem('activeCompanyID');
       state.id = null;
       state.data = null;
       state.companies = [];

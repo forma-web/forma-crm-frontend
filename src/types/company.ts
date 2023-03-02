@@ -8,6 +8,26 @@ export type TCompany = {
   address?: string;
 };
 
+export type TCompanyID = {
+  companyID: number;
+};
+
+export type TDepartment = {
+  id: number;
+  name: string;
+};
+
+export type TOffices = {
+  id: number;
+  name: string;
+  address: string;
+};
+
+export type TFullCompany = TCompany & {
+  departments: TDepartment[];
+  offices: TOffices[];
+};
+
 export type TCompanyData = TCompany & TTime;
 
 export type TCompaniesResponse = TResponse<TCompanyData[]>;

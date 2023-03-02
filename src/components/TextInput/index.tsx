@@ -1,15 +1,10 @@
 import { TextField, TextFieldProps } from '@mui/material';
 import React from 'react';
-import { Control, Controller, FieldValues, Path } from 'react-hook-form';
+import { Controller, FieldValues, Path } from 'react-hook-form';
 
-type TTextInputProps<T extends FieldValues> = {
-  name: keyof T;
-  error?: string;
-  control?: Control<T, unknown>;
-  rules?: Record<string, unknown>;
-} & TextFieldProps;
+import { TControlledField } from '../../types/form';
 
-const TextInput = <T extends FieldValues>(props: TTextInputProps<T>) => {
+const TextInput = <T extends FieldValues>(props: TControlledField<T> & TextFieldProps) => {
   const { name, control, rules, error, ...rest } = props;
   return (
     <Controller

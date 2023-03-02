@@ -1,12 +1,6 @@
 import { styled } from '@mui/material';
 
-import { ContainerStyled } from '../../styles/containers';
-import { INDENTS, SIZES } from '../../styles/size';
-
-export const AuthBlock = styled(ContainerStyled)`
-  min-width: ${SIZES.widthForm};
-  margin: auto;
-`;
+import { INDENTS } from '../../styles/size';
 
 export const AuthTitleDescription = styled('div')`
   display: inline-flex;
