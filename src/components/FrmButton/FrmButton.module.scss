@@ -1,0 +1,21 @@
+.button{
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    color: #FFFFFF;
+    background: #059E86;
+
+    &:disabled{
+        color: #868686;
+        background: #D3D3D3;
+    }
+
+    &__secondary{
+        color: #2E514C;
+        background-color: #ECF4F3;
+    }
+
+    &:hover{
+        opacity: 0.9;
+    }
+}
